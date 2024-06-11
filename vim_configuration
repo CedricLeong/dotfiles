@@ -1,0 +1,9 @@
+set nocompatible
+set number
+set cindent
+set notermguicolors
+set showcmd
+colorscheme tokyonight-moon
+
+let g:floaterm_keymap_new = '<Leader>ft'
+let g:floaterm_keymap_toggle = '<Leader>t'
