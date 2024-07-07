@@ -6,7 +6,10 @@
 # Let home-manager install and manage itself.
 	programs.home-manager.enable = true;
 
-	home.packages = with pkgs; [];
+	home.packages = with pkgs; [ 
+		pkgs.ripgrep 
+		pkgs.neovim-remote
+	];
 
 	home.sessionVariables = {
 		EDITOR = "nvim";
@@ -47,14 +50,32 @@
 		plugins = with pkgs.vimPlugins; [
 			nvim-lspconfig
 				nvim-treesitter.withAllGrammars
+				nvim-treesitter-context
 				plenary-nvim
 				gruvbox-material
 				mini-nvim
 				telescope-nvim
-				tokyonight-nvim
 				vim-floaterm
+				tokyonight-nvim
 				gitsigns-nvim
+				nui-nvim
+				trouble-nvim
+				telescope-file-browser-nvim
+				telescope-project-nvim
+				mini-nvim
+				markdown-preview-nvim
+				nvim-cmp
+				vim-godot
+				cmp-nvim-lsp
+				lsp-zero-nvim
 		];
 		extraConfig = lib.fileContents ./vim_configuration;
+		extraPackages = with pkgs; [
+			nodePackages.yaml-language-server
+				nodePackages.vscode-langservers-extracted
+				nodePackages.markdownlint-cli
+				gitlint
+				actionlint
+		];
 	};
 }

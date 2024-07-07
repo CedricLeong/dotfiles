@@ -1,9 +1,4 @@
-{
-	description = "Example Darwin system flake";
-
-	inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-		nix-darwin.url = "github:LnL7/nix-darwin";
+{ description = "Example Darwin system flake"; inputs = { nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; nix-darwin.url = "github:LnL7/nix-darwin";
 		nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 		home-manager = {
 			url = "github:nix-community/home-manager";
@@ -18,6 +13,7 @@
 # $ nix-env -qaP | grep wget
 			environment.systemPackages =
 				[ pkgs.vim pkgs.neofetch pkgs.neovim
+				pkgs.act
 				];
 # Auto upgrade nix package and the daemon service.
 			services.nix-daemon.enable = true;
@@ -48,45 +44,6 @@
 				home = "/Users/cleong";
 			};
 		};
-	homeconfig = {pkgs, ...}: {
-# this is internal compatibility configuration 
-# for home-manager, don't change this!
-		home.stateVersion = "23.05";
-# Let home-manager install and manage itself.
-		programs.home-manager.enable = true;
-
-		home.packages = with pkgs; [];
-
-		home.sessionVariables = {
-			EDITOR = "nvim";
-		};
-		home.file.".vimrc".source = ./vim_configuration; 
-
-		programs.zsh = {
-			enable = true;
-			shellAliases = {
-				switch = "darwin-rebuild switch --flake ~/nix-darwin-config/";
-			};
-		};
-		programs.git = {
-			enable = true;
-			userName = "cedric leong";
-			userEmail = "cedricleong@gmail.com";
-			ignores = [ ".DS_Store" ];
-			extraConfig = {
-				init.defaultBranch = "main";
-				push.autoSetupRemote = true;
-			};
-		};
-		programs.vim = {
-			enable = true;
-			plugins = with pkgs.vimPlugins; [ vim-airline ];
-			settings = { ignorecase = true; };
-			extraConfig = ''
-				set mouse=a
-				'';
-		};
-	};
 	in
 	{
 # Build darwin flake using:
