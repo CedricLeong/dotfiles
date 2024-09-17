@@ -68,6 +68,7 @@
 				vim-godot
 				cmp-nvim-lsp
 				lsp-zero-nvim
+				trouble-nvim
 		];
 		extraConfig = lib.fileContents ./vim_configuration;
 		extraPackages = with pkgs; [
