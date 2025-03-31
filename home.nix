@@ -9,6 +9,7 @@
 	home.packages = with pkgs; [ 
 		pkgs.ripgrep 
 		pkgs.neovim-remote
+		pkgs.serverless
 	];
 
 	home.sessionVariables = {
@@ -21,6 +22,7 @@
 		enable = true;
 		shellAliases = {
 			switch = "darwin-rebuild switch --flake ~/nix-darwin-config/";
+			gvim = "nvim --listen /tmp/godothost";
 		};
 	};
 	programs.git = {
@@ -69,6 +71,7 @@
 				cmp-nvim-lsp
 				lsp-zero-nvim
 				trouble-nvim
+				nvim-dap
 		];
 		extraConfig = lib.fileContents ./vim_configuration;
 		extraPackages = with pkgs; [
