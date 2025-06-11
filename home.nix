@@ -10,13 +10,13 @@
 		pkgs.ripgrep 
 		pkgs.neovim-remote
 		pkgs.serverless
+		pkgs.just
 	];
 
 	home.sessionVariables = {
 		EDITOR = "nvim";
 	};
 	home.file.".vimrc".source = ./vim_configuration; 
-
 
 	programs.zsh = {
 		enable = true;

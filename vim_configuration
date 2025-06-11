@@ -7,6 +7,9 @@ colorscheme tokyonight-moon
 let g:floaterm_keymap_new = '<Leader>ft'
 let g:floaterm_keymap_toggle = '<Leader>t'
 
+autocmd BufEnter * silent! lcd %:p:h
+
+
 lua << EOF
 require('lsp-zero')
 require('lspconfig').gdscript.setup({})
